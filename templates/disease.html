@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Disease Prediction</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF8C00, #FFD700); /* Orange gradient background */
+            color: #000000; /* White text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2em; /* Adjust the font size as needed */
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9); /* White background with opacity */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px; /* Adjust the width as needed */
+            margin: 20px auto;
+            position: relative; /* Position relative for loading bar positioning */
+        }
+
+        input, select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green submit button */
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Loading animation */
+        .loader-container {
+            display: none; /* Initially hidden */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.9); /* White background with opacity */
+            border-radius: 10px;
+        }
+
+        .loader-bar {
+            width: 0;
+            height: 10px;
+            background-color: #3498db; /* Blue color for loading bar */
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 2s ease; /* Adjust the duration of the loading bar */
+        }
+
+        .loading input[type="submit"] {
+            color: transparent; /* Hide text during loading */
+        }
+
+        .loading .loader-container {
+            display: block; /* Show loader during loading */
+        }
+    </style>
+</head>
+
+<body>
+   <h1>Pet Disease Prediction</h1>
+   <form action="/predict" method="post" onsubmit="showLoader()">
+      <!-- Input fields for user data -->
+      Age: <input type="number" name="age" required><br>
+      Change in Behavior: <select name="change_b" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Reluctance to Move: <select name="reluctance_to_move" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      <!-- Add other input fields -->
+      Reduction in Activity: <select name="reduce_activity" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Stiffness: <select name="stiffness" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Sneezing: <select name="sneezing" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Vomiting: <select name="vomiting" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Limping: <select name="limping" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Aggression: <select name="aggression" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Anxiety: <select name="anxiety" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Compulsive Behavior: <select name="compulsive_behavior" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Elimination Issues: <select name="elimination" required>
+         <option value="0">No</option>
+         <option value="1">Yes</option>
+      </select><br>
+      Species: <select name="species" required>
+         <option value="Dog">Dog</option>
+         <option value="Cat">Cat</option>
+      </select><br>
+
+      <div class="loader-container">
+         <div class="loader-bar" id="loaderBar"></div> <!-- Loading bar -->
+     </div>
+
+     <input type="submit" value="Predict">
+ </form>
+
+ <script>
+     function showLoader(event) {
+         event.preventDefault(); // Prevent the default form submission
+         var form = document.getElementById('predictionForm');
+         var loaderBar = document.getElementById('loaderBar');
+
+         form.classList.add('loading');
+         loaderBar.style.width = '100%'; // Set loading bar to 100% width
+
+         // Simulate a delay for the loading animation (adjust as needed)
+         setTimeout(function() {
+             // After the loading animation, submit the form programmatically
+             form.submit();
+         }, 2000); // 2000 milliseconds (2 seconds) as an example, adjust as needed
+     }
+ </script>
+</body>
+</html>
